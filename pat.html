@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>patpat</title>
+  <style>
+    .center {
+      text-align: center;
+    }
+
+    #handImg {
+      visibility: hidden;
+    }
+
+    .button {
+      padding: 20px;
+      font-family: "Roboto";
+      color: white;
+      background-color: blue;
+      border-radius: 25px;
+      width: 200px;
+      margin: auto;
+    }
+
+    .clickdown {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center">
+    Here's the button you asked for.
+    <div id="hand">
+      <img id="handImg" src="./handup.png" width="100" class="center" />
+    </div>
+    <div id="himiko" class="himikodiv">
+      <img id="himikoImg" src="./sad.png" height="300" class="center" />
+    </div>
+  </div>
+  <div id="patButton" class="center">
+    <button class="button">...pat, pat</button>
+  </div>
+</body>
+<script>
+  var mover = undefined;
+  var patButton = document.getElementById('patButton');
+  var hand = document.getElementById('handImg');
+  var handDiv = document.getElementById('hand');
+  var himiko = document.getElementById('himikoImg');
+  function resetter() {
+    setTimeout(function () {
+      himiko.src = "./sad.png";
+      hand.style.visibility = "hidden"
+      if (mover) {
+        clearInterval(mover);
+      }
+      mover = undefined;
+    }, 2000)
+  }
+  function moveHand() {
+    var flag = true;
+    mover = setInterval(function () {
+      if (flag) {
+        hand.src = "handdown.png";
+        flag = false;
+      } else {
+        hand.src = "handup.png";
+      }
+    }, 400)
+  }
+  patButton.onclick = function () {
+    himiko.src = './happy.png';
+    hand.style.visibility = "visible"
+    moveHand();
+    resetter();
+  }
+
+
+</script>
+
+</html>
